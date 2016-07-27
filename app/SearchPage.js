@@ -8,10 +8,12 @@ import {
     TextInput,
     View,
     TouchableHighlight,
+    ActivityIndicator,
     Image,
     Dimensions,
     Keyboard,
-    LayoutAnimation
+    LayoutAnimation,
+    Alert
 } from 'react-native';
 
 import yelp from './../lib/yelp_api';
@@ -21,11 +23,11 @@ import tempJson from './tempJson.json';
 
 let windowHeight = Dimensions.get('window').height;
 
-var DESCRIPTION_MARGIN = 24;
+var DESCRIPTION_MARGIN = 64;
 var DESCRIPTION_FONT = 16;
 var INPUTS_MARGIN = 0;
 var BUTTON_INPUT_FONT = 16;
-var BUTTON_INPUT_HEIGHT = 30;
+var BUTTON_INPUT_HEIGHT = 24;
 var INPUT_FLEX = 6;
 var INDICATOR_SIZE = 38;
 var KEYBOARD_MARGIN = 220;
@@ -37,13 +39,15 @@ if(windowHeight <=  1280) {
 
 if(windowHeight > 1280  && windowHeight <= 1920) {
   //medium android size, 1920
-    DESCRIPTION_MARGIN = 24;
+    DESCRIPTION_MARGIN = 44;
+    alert('>1280 or <= 1920');
 };
 
 if(windowHeight > 1920 && windowHeight <= 2560) {
 //large, most popular, android size, 2560
     DESCRIPTION_FONT = 18;
-    DESCRIPTION_MARGIN = 24;
+    DESCRIPTION_MARGIN = 44;
+    alert('>1920 or <= 2560');
 };
 
 class SearchPage extends Component {
@@ -98,7 +102,6 @@ class SearchPage extends Component {
     }
 
     onSearchPressed() {
-        this.hideKeyboard();
         this.refs.TextInput.blur();
         let query = yelp.request_yelp(this.state.searchString);
         this._executeQuery(query);
@@ -113,6 +116,7 @@ class SearchPage extends Component {
                 this._executeQuery(query);
             },
             error => {
+                Alert.alert('', 'To use Current Location, please allow Save a Stray to access your location.');
                 this.setState({
                     message: 'GPS currently unavailable.'
                 });
@@ -134,7 +138,7 @@ class SearchPage extends Component {
     }
 
     render() {
-        let spinner = this.state.isLoading ? <View style={styles.indicator}/> : <View></View>;
+        let spinner = this.state.isLoading ? <ActivityIndicator color ='white' style={styles.indicator}/> : <View></View>;
         return (
         <Image style={styles.container} source={require('./finalDog1242x2208.png')}>
             <View style={[styles.content], {marginBottom: this.state.keyboardMargin}}>
@@ -224,8 +228,8 @@ const styles = StyleSheet.create({
     descriptionContainer: {
         flex: 1,
         paddingTop: 3,
-        marginTop: 0,
         marginBottom: DESCRIPTION_MARGIN,
+        marginTop: 20,
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
@@ -292,18 +296,17 @@ const styles = StyleSheet.create({
     },
     goButton: {
         flex: 1,
-        flexDirection: 'row',
-        height: BUTTON_INPUT_HEIGHT,
+        alignSelf: 'stretch',
         backgroundColor: 'rgb(107,151,212)',
         borderRadius: 40,
         marginLeft: 8,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
+        padding: 4,
+        justifyContent: 'center',
     },
     button: {
         flex: 1,
         flexDirection: 'row',
-        height: BUTTON_INPUT_HEIGHT,
+        height: BUTTON_INPUT_HEIGHT, 
         backgroundColor: '#b9c6d9',
         borderRadius: 2,
         marginRight: PADDING,
@@ -313,9 +316,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     searchInput: {
-        height: BUTTON_INPUT_HEIGHT,
-        padding: 4,
         flex: INPUT_FLEX,
+        lineHeight: BUTTON_INPUT_HEIGHT,
+        padding: 4,
         fontFamily: 'Open Sans',
         fontSize: BUTTON_INPUT_FONT,
         backgroundColor: 'white',
@@ -324,9 +327,9 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
     },
     indicator: {
-        marginTop: 10,
         width: INDICATOR_SIZE,
-        height: INDICATOR_SIZE
+        height: INDICATOR_SIZE,
+        marginBottom: -40
     }
 });
 
