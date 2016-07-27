@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     indicator: {
         width: INDICATOR_SIZE,
         height: INDICATOR_SIZE,
-        marginBottom: -40
+        marginBottom: -38
     }
 });
 
