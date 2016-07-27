@@ -10,7 +10,7 @@ import {
     TouchableHighlight,
     Image,
     Dimensions,
-    DeviceEventEmitter,
+    Keyboard,
     LayoutAnimation
 } from 'react-native';
 
@@ -61,9 +61,9 @@ class SearchPage extends Component {
         };
     }
 
-    componentWillMount() {
-      DeviceEventEmitter.addListener('keyboardWillShow', this.showKeyboard.bind(this));
-      DeviceEventEmitter.addListener('keyboardWillHide', this.hideKeyboard.bind(this));
+    onComponentMounted() {
+      Keyboard.addListener('keyboardWillShow', this.showKeyboard.bind(this));
+      Keyboard.addListener('keyboardWillHide', this.hideKeyboard.bind(this));
     }
 
     onSearchTextChanged(event) {
@@ -127,6 +127,7 @@ class SearchPage extends Component {
                 component: SearchResults,
                 passProps: { results: response.businesses }
             });
+            this.hideKeyboard();
         } else {
             this.setState({ description: 'Hmmm that didn\'t work. Try again.', descriptionStyle: styles.tryAgain});
         }
