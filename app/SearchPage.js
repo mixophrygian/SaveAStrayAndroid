@@ -23,7 +23,7 @@ import tempJson from './tempJson.json';
 
 let windowHeight = Dimensions.get('window').height;
 
-var DESCRIPTION_MARGIN = 64;
+var DESCRIPTION_MARGIN = 44;
 var DESCRIPTION_FONT = 16;
 var INPUTS_MARGIN = 0;
 var BUTTON_INPUT_FONT = 16;
@@ -39,15 +39,13 @@ if(windowHeight <=  1280) {
 
 if(windowHeight > 1280  && windowHeight <= 1920) {
   //medium android size, 1920
-    DESCRIPTION_MARGIN = 44;
-    alert('>1280 or <= 1920');
+    //DESCRIPTION_MARGIN = 44;
 };
 
 if(windowHeight > 1920 && windowHeight <= 2560) {
 //large, most popular, android size, 2560
-    DESCRIPTION_FONT = 18;
-    DESCRIPTION_MARGIN = 44;
-    alert('>1920 or <= 2560');
+    //DESCRIPTION_FONT = 18;
+    //DESCRIPTION_MARGIN = 44;
 };
 
 class SearchPage extends Component {
@@ -55,7 +53,7 @@ class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchString: '22309',
+            searchString: 'Chicago',
             isLoading: false,
             message: '',
             description: 'Search for rescue shelters by city or zip code',

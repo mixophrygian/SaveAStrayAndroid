@@ -87,6 +87,8 @@ const styles = StyleSheet.create({
     staticInfoContainer: {
         flex: 1,
         flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 2
     },
     addressAndNumber: {
         bottom: 0,
@@ -143,29 +145,34 @@ const styles = StyleSheet.create({
     address: {
         fontSize: SMALLER_FONT,
         fontFamily: 'Open Sans',
-        marginTop: 0,
+        alignSelf: 'flex-start'
     },
     staticPhone: {
         fontSize: SMALLER_FONT,
         fontFamily: 'Open Sans',
-        marginTop: 5,
+        marginTop: 3,
+        alignSelf: 'flex-end'
     },
     phoneUnavailable: {
         fontSize: SMALLER_FONT,
         fontFamily: 'Open Sans',
-        marginTop: 5,
-        color: 'gray'
+        marginTop: 3,
+        color: 'gray',
+        alignSelf: 'flex-end'
     },
     pinGlyph: {
         width: 12,
         height: 12,
         marginRight: 6,
+        marginTop: 5,
+        alignSelf: 'flex-start'
     },
     phoneGlyph: {
         width: 12,
         height: 12,
         marginRight: 6,
-        marginTop: 5,
+        marginBottom: 5,
+        alignSelf: 'flex-end'
     }, 
     reviewCount: {
         fontSize: SMALLER_FONT,
@@ -178,43 +185,43 @@ const styles = StyleSheet.create({
         width: (width / 2) - 10,
         height: 56,
         marginRight: 10,
+        paddingTop: 8,
         fontSize: 20,
         fontFamily: 'Open Sans',
         color: 'white',
         backgroundColor: '#6B97D3',
         textAlign: 'center',
-        alignSelf: 'center'
     },
     tapDirectionsDisabled: {
         width: (width / 2) - 10,
         marginRight: 10,
         height: 56,
         fontSize: 20,
+        paddingTop: 8,
         fontFamily: 'Open Sans',
         color: '#818181',
         backgroundColor: '#DDDCDD',
         textAlign: 'center',
-        alignSelf: 'center'
     },
     phoneButton: {            
         width: (width / 2) - 10,
         height: 56,
+        paddingTop: 8,
         fontSize: 20,
         fontFamily: 'Open Sans',
         color: 'white',
         backgroundColor: '#2C599C',
         textAlign: 'center',
-        alignSelf: 'center'
     },
     phoneButtonDisabled: {
         width: (width / 2) - 10,
         height: 56,
+        paddingTop: 8,
         fontSize: 20,
         fontFamily: 'Open Sans',
         backgroundColor: '#A0A0A0',
         color: '#DADADA',
         textAlign: 'center',
-        alignSelf: 'center'
     },
     yelpInfo: {
         marginBottom: 0,
@@ -241,7 +248,7 @@ class SingleResult extends Component {
       console.log('directions requested');
       const lat = this.props.result[0].location.coordinate.latitude;
       const lon = this.props.result[0].location.coordinate.longitude;
-      const url = 'http://maps.apple.com/?q=' + lat +',' + lon;
+      const url = 'http://maps.google.com/?q=' + lat +',' + lon;
       Linking.openURL(url).catch(err => console.error('An error occurred', err));
     }
 
@@ -274,13 +281,12 @@ class SingleResult extends Component {
           (<Text style={styles.phoneButtonDisabled}>Call</Text>);
         const warningBlurb = height > 500 ? (<View> 
                     <Text style={styles.description}>
-                    Call to verify hours of business and policies. Check out <Text
+                    Please call to verify hours of business and policies.  <Text
                       style={styles.humaneSocietyURL}
                       underlayColor='white' 
                       onPress={this.viewHumaneSociety.bind(this)}
-                      >
-                       tips from the humane society </Text>
-                     on how to catch a stray. 
+                      >Tap here
+</Text> for tips from the humane society on how to safely catch a stray.
                     </Text>
                   </View>) : (<View></View>);
         const directions = displayAddress[0].split(',')[0].search(/\d/) >= 0 ? (<TouchableHighlight
