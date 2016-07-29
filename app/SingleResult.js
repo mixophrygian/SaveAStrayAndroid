@@ -18,7 +18,7 @@ import DisplayAddressParser from './../lib/display_address_parser';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-let WARNING_MARGIN_TOP = 3;
+let WARNING_MARGIN_TOP = 0;
 let WARNING_MARGIN_BOTTOM = 3;
 let ADDRESS_MARGIN = 5;
 let YELP_INFO_MARGIN_BOTTOM = 0;
@@ -27,13 +27,13 @@ let SMALLER_FONT = 12;
 let NAME_FONT = 20;
 
 if(height <= 568) {
-  //styling defaults for iPhone 4s and 5
+  //styling defaults 
 };
 
 if(height > 568 && height <= 667) {
-  //iphone 6 styles
-  YELP_INFO_MARGIN_BOTTOM = 12;
-  WARNING_MARGIN_BOTTOM = 20;
+  //HTC One
+  YELP_INFO_MARGIN_BOTTOM = 9;
+  WARNING_MARGIN_BOTTOM = 7;
   DESCRIPTION_FONT = 14;
   SMALLER_FONT = 14
   NAME_FONT = 23;
@@ -41,7 +41,7 @@ if(height > 568 && height <= 667) {
 };
 
 if(height > 667 && height <= 736) {
-  //iphone 6 plus
+  //Samsung larger phones
   YELP_INFO_MARGIN_BOTTOM = 12;
   WARNING_MARGIN_BOTTOM = 20;
   SMALLER_FONT = 14;
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     stars: {
         width: 83,
         height: 15,
-        marginTop: 7,
+        marginTop: 5,
         marginRight: 3
     }, 
     yelpText: {
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     yelpLogo: {
         width: 50,
         height: 25,
+        marginTop: -3
     },
     staticInfoContainer: {
         flex: 1,
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     },
     humaneSocietyURL: {
         color:'#325280',
-        textDecorationLine: 'underline',
+        fontWeight: 'bold',
         fontSize: DESCRIPTION_FONT,
         fontFamily: 'Open Sans'
     },
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: NAME_FONT,
-        lineHeight: NAME_FONT + 8,
+        lineHeight: NAME_FONT + 6,
         fontFamily: 'Open Sans',
         fontWeight: 'bold',
         color: 'black',
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
         fontSize: SMALLER_FONT,
         fontFamily: 'Open Sans',
         color: '#656565',
-        marginTop: 5,
+        marginTop: 3,
         marginLeft: 3
     },
     tapDirections: {

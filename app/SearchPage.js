@@ -33,19 +33,23 @@ var INDICATOR_SIZE = 38;
 var KEYBOARD_MARGIN = 220;
 var PADDING = 50;
 
-if(windowHeight <=  1280) {
+if(windowHeight <=  640) {
     //smallest android size is default, 1280px
+    //nexus 6 - 683
+    alert('smallest ' + windowHeight);
 };
 
-if(windowHeight > 1280  && windowHeight <= 1920) {
+if(windowHeight > 640  && windowHeight <= 683) {
   //medium android size, 1920
     //DESCRIPTION_MARGIN = 44;
+    alert('medium');
 };
 
-if(windowHeight > 1920 && windowHeight <= 2560) {
+if(windowHeight > 683 ) {
 //large, most popular, android size, 2560
     //DESCRIPTION_FONT = 18;
     //DESCRIPTION_MARGIN = 44;
+    INPUT_FLEX = 8;
 };
 
 class SearchPage extends Component {
