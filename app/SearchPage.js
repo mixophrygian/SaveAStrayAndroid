@@ -36,13 +36,13 @@ var PADDING = 50;
 if(windowHeight <=  640) {
     //smallest android size is default, 1280px
     //nexus 6 - 683
-    alert('smallest ' + windowHeight);
+    //alert('smallest ' + windowHeight);
 };
 
 if(windowHeight > 640  && windowHeight <= 683) {
   //medium android size, 1920
     //DESCRIPTION_MARGIN = 44;
-    alert('medium');
+    //alert('medium');
 };
 
 if(windowHeight > 683 ) {
@@ -98,7 +98,7 @@ class SearchPage extends Component {
             .catch(error =>
                 this.setState({
                     isLoading: false,
-                    description: 'Hmmm. That didn\'t work.' + error
+                    description: 'Hmmm. That didn\'t work.'
                 }));
 
     }
@@ -231,26 +231,19 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 3,
         marginBottom: DESCRIPTION_MARGIN,
-        marginTop: 20,
+        marginTop: 10,
         alignSelf: 'stretch',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingRight: PADDING,
-        paddingLeft: PADDING
+        marginRight: PADDING,
+        marginLeft: PADDING
     },
     description: {
         fontFamily: 'Open Sans',
         fontSize: DESCRIPTION_FONT,
         textAlign: 'center',
         color: 'white',
-        paddingLeft: PADDING,
-        paddingRight: PADDING,
         backgroundColor: 'transparent',
-        shadowColor: 'rgb(25, 19, 15)',
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 1,
-        shadowRadius: 4,
-        lineHeight: DESCRIPTION_FONT
+        lineHeight: DESCRIPTION_FONT + 3,
+        alignSelf: 'stretch'
     },
     tryAgain: {
         fontFamily: 'Open Sans',
@@ -258,13 +251,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         backgroundColor: 'transparent',
-        paddingLeft: PADDING,
-        paddingRight: PADDING,
-        shadowColor: '#b9c6d9',
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 1,
-        shadowRadius: 4,
-        lineHeight: DESCRIPTION_FONT
+        lineHeight: DESCRIPTION_FONT + 3,
+        alignSelf: 'stretch'
     },
 
     container: {
@@ -306,16 +294,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     button: {
-        flex: 1,
-        flexDirection: 'row',
-        height: BUTTON_INPUT_HEIGHT, 
+        paddingTop: 10,
+        paddingBottom: 10,
         backgroundColor: '#b9c6d9',
         borderRadius: 2,
         marginRight: PADDING,
         marginLeft: PADDING,
         marginBottom: 12,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
     },
     searchInput: {
         flex: INPUT_FLEX,
@@ -329,6 +314,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
     },
     indicator: {
+        alignSelf: 'center',
         width: INDICATOR_SIZE,
         height: INDICATOR_SIZE,
         marginBottom: -38

@@ -70,7 +70,7 @@ class JULY24 extends Component {
               underlayColor="transparent"
               onPress={() => {if (index > 0) {navigator.pop() } }}
               >
-                  <Text style={ styles.leftNavButtonText }>&lt;</Text>
+                  <Text style={ styles.leftNavButtonText }>&#8592;</Text>
               </TouchableHighlight>
             )} else { return null }
     },
