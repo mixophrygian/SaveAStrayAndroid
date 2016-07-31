@@ -70,7 +70,7 @@ class JULY24 extends Component {
               underlayColor="transparent"
               onPress={() => {if (index > 0) {navigator.pop() } }}
               >
-                  <Text style={ styles.leftNavButtonText }>&#8592;</Text>
+                  <Text style={ styles.leftNavButtonText }>&#65308;</Text>
               </TouchableHighlight>
             )} else { return null }
     },
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         marginTop: 2
     },
     leftNavButtonText: {
-        fontSize: 25,
+        fontSize: 28,
         marginLeft: 13,
         marginTop: 4
     },
