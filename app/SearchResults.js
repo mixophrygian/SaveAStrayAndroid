@@ -118,7 +118,7 @@ class SearchResults extends Component {
         const number = rowData.phone;
         let area = (rowData.location.neighborhoods || rowData.location.city);
         area += ', ' + rowData.location.state_code;
-        const tempImage = require('./catnose.jpg');
+        const tempImage = require('./placeholder.png');
         const picture = rowData.image_url ? { uri: rowData.image_url } : tempImage;
 
         return (

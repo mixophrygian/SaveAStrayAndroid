@@ -30,7 +30,7 @@ var BUTTON_INPUT_FONT = 16;
 var BUTTON_INPUT_HEIGHT = 24;
 var INPUT_FLEX = 6;
 var INDICATOR_SIZE = 38;
-var KEYBOARD_MARGIN = 220;
+var KEYBOARD_MARGIN = 20;
 var PADDING = 50;
 
 if(windowHeight <=  640) {
@@ -57,7 +57,7 @@ class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchString: 'Chicago',
+            searchString: '',
             isLoading: false,
             message: '',
             description: 'Search for rescue shelters by city or zip code',
@@ -161,13 +161,13 @@ class SearchPage extends Component {
                         style={styles.searchInput}
                         value={this.state.searchString}
                         autoCorrect={false}
+                        onFocus={this.showKeyboard.bind(this)}
                         onSubmitEditing={this.onSearchPressed.bind(this)}
                         onChange={this.onSearchTextChanged.bind(this)}
                         returnKeyType={'search'}
-                        onFocus={this.showKeyboard.bind(this)}
                         blurOnSubmit={false}
+                        autoComplete={false}
                         keyboardType={"web-search"}
-                        keyboardAppearance={"default"}
                         placeholderTextColor= 'gray'
                         placeholder='City or zip code'
                     />

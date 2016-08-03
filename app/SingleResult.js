@@ -269,7 +269,7 @@ class SingleResult extends Component {
           : (<Text style={styles.phoneUnavailable}>Phone Number Unavailable</Text>);
          
         const displayAddress = DisplayAddressParser(result.location.display_address);
-        const tempImage = require('./catnose.jpg');
+        const tempImage = require('./placeholder.png');
         const pinGlyph = require('./pin.png'); 
         const phoneGlyph = require('./phone.png');
         const phoneNumber = '';
