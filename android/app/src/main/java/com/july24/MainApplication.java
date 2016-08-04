@@ -1,4 +1,4 @@
-package com.july24;
+package com.saveastray;
 
 import android.app.Application;
 import android.util.Log;
