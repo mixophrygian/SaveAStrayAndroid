@@ -18,7 +18,6 @@ import {
 
 import yelp from './../lib/yelp_api';
 import SearchResults from './SearchResults';
-import tempJson from './tempJson.json';
 
 
 let windowHeight = Dimensions.get('window').height;
