@@ -12,9 +12,30 @@ import SearchPage from "./app/SearchPage";
 import SearchResults from "./app/SearchResults";
 import SingleResult from "./app/SingleResult";
 
-const windowWidth = Dimensions.get("window").width;
+import { createStackNavigator } from "react-navigation";
 
+const RootStack = createStackNavigator(
+  {
+    Search: { screen: SearchPage },
+    Results: { screen: SearchResults },
+    Result: { screen: SingleResult }
+  },
+  {
+    headerMode: "none"
+  }
+);
+
+/*
+
+const windowWidth = Dimensions.get("window").width;
+*/
 export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
+
+/*
   renderScene(route, nav) {
     switch (route.title) {
       case "Search":
@@ -145,3 +166,4 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+*/
