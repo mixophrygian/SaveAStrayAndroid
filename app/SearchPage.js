@@ -33,7 +33,7 @@ var DESCRIPTION_MARGIN = 64;
 var DESCRIPTION_FONT = 16;
 var INPUTS_MARGIN = 0;
 var BUTTON_INPUT_FONT = 16;
-var BUTTON_INPUT_HEIGHT = 24;
+var BUTTON_INPUT_HEIGHT = 42;
 var INPUT_FLEX = 6;
 var KEYBOARD_MARGIN = 220;
 var PADDING = 50;
@@ -57,7 +57,7 @@ class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: "",
+      searchString: "90401",
       isLoading: false,
       message: "",
       description: "Search for rescue shelters by city\nor zip code",
@@ -141,12 +141,12 @@ class SearchPage extends Component {
       descriptionStyle: styles.description
     });
     if (response.total > 0) {
-      this.props.navigator.push({
-        title: "Results",
-        component: SearchResults,
-        passProps: { results: response.businesses }
-      });
+      console.log("response!", response);
       this.hideKeyboard();
+      console.log("nav", this.props.navigation);
+      this.props.navigation.navigate("SearchResults", {
+        results: response.businesses
+      });
     } else {
       this.setState({
         description: "Hmmm that didn't work. Try again.",
@@ -186,7 +186,8 @@ class SearchPage extends Component {
               ref="TextInput"
               style={styles.searchInput}
               value={this.state.searchString}
-              autoCorrect={false}
+              autoCorrect={true}
+              multiline={false}
               onSubmitEditing={this.onSearchPressed.bind(this)}
               onChange={this.onSearchTextChanged.bind(this)}
               returnKeyType={"search"}
@@ -323,17 +324,17 @@ let styles = StyleSheet.create({
     alignSelf: "stretch",
     backgroundColor: "rgb(107,151,212)",
     borderRadius: 40,
-    marginBottom: 8,
+    marginBottom: 1,
     marginLeft: 8,
-    padding: 4,
+    padding: 11,
     justifyContent: "center"
   },
   button: {
-    flex: 1,
     flexDirection: "row",
     height: BUTTON_INPUT_HEIGHT,
     backgroundColor: "#b9c6d9",
     borderRadius: 2,
+    borderColor: "blue",
     marginRight: PADDING,
     marginLeft: PADDING,
     marginBottom: 12,
@@ -341,8 +342,7 @@ let styles = StyleSheet.create({
   },
   searchInput: {
     flex: INPUT_FLEX,
-    lineHeight: BUTTON_INPUT_HEIGHT,
-    padding: 4,
+    padding: 8,
     fontFamily: "normal",
     fontSize: BUTTON_INPUT_FONT,
     backgroundColor: "white",

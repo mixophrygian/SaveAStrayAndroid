@@ -49,7 +49,6 @@ if (height > 667 && height <= 736) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 65,
     padding: 10,
     backgroundColor: "#F7F7F7"
   },
@@ -233,7 +232,7 @@ const styles = StyleSheet.create({
 
 class SingleResult extends Component {
   viewYelp() {
-    const url = this.props.result[0].url;
+    const url = this.props.navigation.getParam("result")[0].url;
     Linking.openURL(url).catch(err => console.error("An error occurred", err));
   }
 
@@ -244,7 +243,7 @@ class SingleResult extends Component {
   }
 
   callLocation() {
-    const phone = this.props.result[0].phone;
+    const phone = this.props.navigation.getParam("result")[0].phone;
     Communications.phonecall(phone, true);
   }
 
@@ -278,14 +277,15 @@ class SingleResult extends Component {
 
   getDirections() {
     console.log("directions requested");
-    const lat = this.props.result[0].location.coordinate.latitude;
-    const lon = this.props.result[0].location.coordinate.longitude;
+    const result = this.props.navigation.getParam("result")[0];
+    const lat = result.location.coordinate.latitude;
+    const lon = result.location.coordinate.longitude;
     const url = "http://maps.google.com/?q=" + lat + "," + lon;
     Linking.openURL(url).catch(err => console.error("An error occurred", err));
   }
 
   render() {
-    const result = this.props.result[0];
+    const result = this.props.navigation.getParam("result")[0];
     const reviewCount = result.review_count;
     const reviews = reviewCount + (reviewCount != 1 ? " Reviews" : " Review");
     const starsURL = this.getStarRatingImage(result.rating);

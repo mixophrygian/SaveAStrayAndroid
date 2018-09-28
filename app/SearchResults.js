@@ -6,6 +6,7 @@ import {
   Image,
   View,
   TouchableHighlight,
+  FlatList,
   ListView,
   Text
 } from "react-native";
@@ -80,7 +81,9 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
 
-    var goodResults = this.props.results.filter(this.hasAddressOrNumber);
+    const results = this.props.navigation.getParam("results");
+
+    var goodResults = results.filter(this.hasAddressOrNumber);
 
     let dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1.id !== r2.id
@@ -89,6 +92,8 @@ class SearchResults extends Component {
       dataSource: dataSource.cloneWithRows(goodResults)
     };
   }
+
+  _keyExtractor = (item, index) => item.id;
 
   hasAddressOrNumber(result) {
     var address = DisplayAddressParser(result.location.display_address);
@@ -99,12 +104,13 @@ class SearchResults extends Component {
   }
 
   rowPressed(property) {
-    const result = this.props.results.filter(prop => prop.id === property.id);
+    const results = this.props.navigation.getParam("results");
+    const result = results.filter(prop => prop.id === property.id);
 
-    this.props.navigator.push({
+    this.props.navigation.navigate("SingleResult", {
       title: "",
       component: SingleResult,
-      passProps: { result: result }
+      result: result
     });
   }
 
@@ -136,17 +142,19 @@ class SearchResults extends Component {
     }
   }
 
-  renderRow(rowData, sectionID, rowID) {
-    const name = rowData.name;
-    const reviewCount = rowData.review_count;
+  renderRow(rowData) {
+    console.log("row data", rowData);
+    const result = rowData.item;
+    const name = result.name;
+    const reviewCount = result.review_count;
     const reviews = reviewCount + (reviewCount !== 1 ? " Reviews" : " Review");
-    const starRatingImage = this.getStarRatingImage(rowData.rating);
-    const area = rowData.location.city + ", " + rowData.location.state;
+    const starRatingImage = this.getStarRatingImage(result.rating);
+    const area = result.location.city + ", " + result.location.state;
     const tempImage = require("../assets/catnose.jpg");
-    const picture = rowData.image_url ? { uri: rowData.image_url } : tempImage;
+    const picture = result.image_url ? { uri: result.image_url } : tempImage;
     return (
       <TouchableHighlight
-        onPress={() => this.rowPressed(rowData)}
+        onPress={() => this.rowPressed(result)}
         underlayColor="gray"
       >
         <View>
@@ -177,14 +185,26 @@ class SearchResults extends Component {
   }
 
   render() {
+    const results = this.props.navigation.getParam("results");
+    var goodResults = results.filter(this.hasAddressOrNumber);
+
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}
-        renderSeparator={(sectionID, rowID) => (
-          <View key={`${sectionID}-${rowID}`} style={styles.fatSeparator} />
+      <FlatList
+        data={goodResults}
+        keyExtractor={this._keyExtractor.bind(this)}
+        renderItem={this.renderRow.bind(this)}
+        ItemSeparatorComponent={(sectionid, rowid) => (
+          <View key={`${sectionid}-${rowid}`} style={styles.fatSeparator} />
         )}
       />
+      // <ListView
+      //   dataSource={this.state.dataSource}
+      //   scrollRenderAheadDistance={20}
+      //   renderRow={this.renderRow.bind(this)}
+      // renderseparator={(sectionid, rowid) => (
+      //   <view key={`${sectionid}-${rowid}`} style={styles.fatseparator} />
+      // )}
+      // />
     );
   }
 }
