@@ -1,4 +1,4 @@
-##Save a Stray - Android
+## Save a Stray - Android
 
 (updated Sept 2018 to use react-navigator, yelp-fusion and a host of other non-deprecated things)
 
