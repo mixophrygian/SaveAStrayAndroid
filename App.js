@@ -27,7 +27,9 @@ const RootStack = createStackNavigator({
       title: "Results"
     })
   },
-  SingleResult: { screen: SingleResult }
+  SingleResult: {
+    screen: SingleResult
+  }
 });
 
 export default class App extends React.Component {

@@ -141,9 +141,7 @@ class SearchPage extends Component {
       descriptionStyle: styles.description
     });
     if (response.total > 0) {
-      console.log("response!", response);
       this.hideKeyboard();
-      console.log("nav", this.props.navigation);
       this.props.navigation.navigate("SearchResults", {
         results: response.businesses
       });

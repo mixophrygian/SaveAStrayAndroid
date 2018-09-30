@@ -48,7 +48,6 @@ if (height > 667 && height <= 736) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
     backgroundColor: "#F7F7F7"
   },
@@ -67,17 +66,15 @@ const styles = StyleSheet.create({
     marginRight: 3
   },
   yelpText: {
-    flex: 1,
     flexDirection: "row"
   },
   reviewCount: {
-    fontSize: SMALLER_FONT,
+    fontSize: 12,
     fontFamily: "Roboto",
     color: "#656565",
     marginLeft: 3
   },
   yelpText2: {
-    flex: 1,
     marginBottom: YELP_INFO_MARGIN_BOTTOM
   },
   yelpLogo: {
@@ -86,21 +83,17 @@ const styles = StyleSheet.create({
     marginTop: -3
   },
   staticInfoContainer: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "flex-start",
     marginBottom: 2
   },
   addressAndNumber: {
-    bottom: 0,
     marginLeft: 10
-    //borderWidth: 1,
-    //borderColor: 'pink'
   },
   ctaButtonContainer: {
     width: width - 20,
     position: "absolute",
-    bottom: 0,
+    bottom: 15,
     left: 0,
     flexDirection: "row"
   },
@@ -184,46 +177,51 @@ const styles = StyleSheet.create({
     marginLeft: 3
   },
   tapDirections: {
-    width: width / 2 - 10,
+    flex: 1,
     height: 56,
-    marginRight: 10,
-    paddingTop: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6B97D3"
+  },
+  tapDirectionsText: {
     fontSize: 20,
     fontFamily: "normal",
-    color: "white",
-    backgroundColor: "#6B97D3",
-    textAlign: "center"
+    color: "white"
   },
   tapDirectionsDisabled: {
-    width: width / 2 - 10,
-    marginRight: 10,
+    flex: 1,
     height: 56,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#DDDCDD"
+  },
+  tapDirectionsDisabledText: {
     fontSize: 20,
-    paddingTop: 8,
-    fontFamily: "normal",
-    color: "#818181",
-    backgroundColor: "#DDDCDD",
-    textAlign: "center"
+    color: "#818181"
   },
   phoneButton: {
-    width: width / 2 - 10,
+    flex: 1,
     height: 56,
-    paddingTop: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#2C599C"
+  },
+  phoneButtonText: {
     fontSize: 20,
     fontFamily: "Roboto",
-    color: "white",
-    backgroundColor: "#2C599C",
-    textAlign: "center"
+    color: "white"
   },
   phoneButtonDisabled: {
-    width: width / 2 - 10,
+    flex: 1,
     height: 56,
-    paddingTop: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#A0A0A0"
+  },
+  phoneButtonDisabledText: {
     fontSize: 20,
     fontFamily: "normal",
-    backgroundColor: "#A0A0A0",
-    color: "#DADADA",
-    textAlign: "center"
+    color: "#DADADA"
   },
   yelpInfo: {
     marginBottom: 0
@@ -238,7 +236,6 @@ class SingleResult extends Component {
 
   viewHumaneSociety() {
     const url = "http://saveastrayapp.com/#tips";
-    console.log("url", url);
     Linking.openURL(url).catch(err => console.error("An error occurred", err));
   }
 
@@ -276,10 +273,10 @@ class SingleResult extends Component {
   }
 
   getDirections() {
-    console.log("directions requested");
     const result = this.props.navigation.getParam("result")[0];
-    const lat = result.location.coordinate.latitude;
-    const lon = result.location.coordinate.longitude;
+    console.log("result", result);
+    const lat = result.coordinates.latitude;
+    const lon = result.coordinates.longitude;
     const url = "http://maps.google.com/?q=" + lat + "," + lon;
     Linking.openURL(url).catch(err => console.error("An error occurred", err));
   }
@@ -310,12 +307,15 @@ class SingleResult extends Component {
     const phoneButton = result.display_phone ? (
       <TouchableHighlight
         underlayColor="white"
+        style={styles.phoneButton}
         onPress={this.callLocation.bind(this)}
       >
-        <Text style={styles.phoneButton}>Call</Text>
+        <Text style={styles.phoneButtonText}>Call</Text>
       </TouchableHighlight>
     ) : (
-      <Text style={styles.phoneButtonDisabled}>Call</Text>
+      <View style={styles.phoneButtonDisabled}>
+        <Text style={styles.phoneButtonDisabledText}>Call</Text>
+      </View>
     );
 
     const warningBlurb =
@@ -341,11 +341,14 @@ class SingleResult extends Component {
         <TouchableHighlight
           underlayColor="white"
           onPress={this.getDirections.bind(this)}
+          style={styles.tapDirections}
         >
-          <Text style={styles.tapDirections}>Directions</Text>
+          <Text style={styles.tapDirectionsText}>Directions</Text>
         </TouchableHighlight>
       ) : (
-        <Text style={styles.tapDirectionsDisabled}>Directions</Text>
+        <View style={styles.tabDirectionsDisabled}>
+          <Text style={styles.tapDirectionsDisabledText}>Directions</Text>
+        </View>
       );
     const picture = result.image_url ? { uri: result.image_url } : tempImage;
 

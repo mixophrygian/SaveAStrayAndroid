@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     padding: 13,
-    paddingTop: 0,
     backgroundColor: "white"
   },
   fatSeparator: {
@@ -108,7 +107,6 @@ class SearchResults extends Component {
     const result = results.filter(prop => prop.id === property.id);
 
     this.props.navigation.navigate("SingleResult", {
-      title: "",
       component: SingleResult,
       result: result
     });
@@ -143,7 +141,6 @@ class SearchResults extends Component {
   }
 
   renderRow(rowData) {
-    console.log("row data", rowData);
     const result = rowData.item;
     const name = result.name;
     const reviewCount = result.review_count;
