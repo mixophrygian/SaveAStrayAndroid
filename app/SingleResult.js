@@ -37,7 +37,7 @@ if (height > 568 && height <= 667) {
   NAME_FONT = 23;
 }
 
-if (height > 667 && height <= 736) {
+if (height > 667) {
   //Samsung larger phones
   YELP_INFO_MARGIN_BOTTOM = 12;
   WARNING_MARGIN_BOTTOM = 20;
@@ -48,13 +48,14 @@ if (height > 667 && height <= 736) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 10,
     backgroundColor: "#F7F7F7"
   },
   allContent: {
     backgroundColor: "white",
     width: width - 20,
-    height: height - 65 - 20
+    flex: 1
   },
   heading: {
     backgroundColor: "white"
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   },
   reviewCount: {
     fontSize: 12,
-    fontFamily: "Roboto",
+
     color: "#656565",
     marginLeft: 3
   },
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 2
   },
   addressAndNumber: {
+    marginTop: YELP_INFO_MARGIN_BOTTOM,
     marginLeft: 10
   },
   ctaButtonContainer: {
@@ -101,14 +103,12 @@ const styles = StyleSheet.create({
     color: "#325280",
     marginLeft: 2,
     marginTop: 2,
-    fontSize: SMALLER_FONT,
-    fontFamily: "Roboto"
+    fontSize: SMALLER_FONT
   },
   humaneSocietyURL: {
     color: "#325280",
     fontWeight: "bold",
-    fontSize: DESCRIPTION_FONT,
-    fontFamily: "Roboto"
+    fontSize: DESCRIPTION_FONT
   },
   image: {
     width: width - 20,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: NAME_FONT,
     lineHeight: NAME_FONT + 6,
-    fontFamily: "normal",
+
     fontWeight: "bold",
     color: "black",
     marginTop: 8,
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: DESCRIPTION_FONT,
-    fontFamily: "Roboto",
     color: "#656565",
     marginBottom: WARNING_MARGIN_BOTTOM,
     marginTop: WARNING_MARGIN_TOP,
@@ -139,18 +138,18 @@ const styles = StyleSheet.create({
   },
   address: {
     fontSize: SMALLER_FONT,
-    fontFamily: "normal",
+
     alignSelf: "flex-start"
   },
   staticPhone: {
     fontSize: SMALLER_FONT,
-    fontFamily: "normal",
+
     marginTop: 3,
     alignSelf: "flex-end"
   },
   phoneUnavailable: {
     fontSize: SMALLER_FONT,
-    fontFamily: "normal",
+
     marginTop: 3,
     color: "gray",
     alignSelf: "flex-end"
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
   },
   reviewCount: {
     fontSize: SMALLER_FONT,
-    fontFamily: "normal",
+
     color: "#656565",
     marginTop: 3,
     marginLeft: 3
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
   },
   tapDirectionsText: {
     fontSize: 20,
-    fontFamily: "normal",
+
     color: "white"
   },
   tapDirectionsDisabled: {
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   },
   phoneButtonText: {
     fontSize: 20,
-    fontFamily: "Roboto",
+
     color: "white"
   },
   phoneButtonDisabled: {
@@ -220,7 +219,7 @@ const styles = StyleSheet.create({
   },
   phoneButtonDisabledText: {
     fontSize: 20,
-    fontFamily: "normal",
+
     color: "#DADADA"
   },
   yelpInfo: {

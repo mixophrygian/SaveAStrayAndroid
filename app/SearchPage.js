@@ -124,7 +124,7 @@ class SearchPage extends Component {
       error => {
         Alert.alert(
           "",
-          "To use Current Location, please allow Save a Stray to access your location."
+          "To use Current Location, update your settings to allow Save a Stray to access your location."
         );
         this.setState({
           message: "GPS currently unavailable."
@@ -249,7 +249,6 @@ var UNDERLAY_COLOR = "rgb(33,68,124)";
 
 let styles = StyleSheet.create({
   descriptionContainer: {
-    flex: 1,
     paddingTop: 3,
     marginBottom: DESCRIPTION_MARGIN,
     marginTop: 20,
@@ -258,7 +257,6 @@ let styles = StyleSheet.create({
     alignItems: "center"
   },
   description: {
-    fontFamily: "Roboto",
     fontSize: DESCRIPTION_FONT,
     textAlign: "center",
     color: "white",
@@ -273,7 +271,6 @@ let styles = StyleSheet.create({
     marginTop: 8
   },
   tryAgain: {
-    fontFamily: "Roboto",
     fontSize: DESCRIPTION_FONT,
     textAlign: "center",
     color: "white",
@@ -308,12 +305,12 @@ let styles = StyleSheet.create({
     color: "#122c5d",
     fontSize: BUTTON_INPUT_FONT,
     margin: 0,
-    fontFamily: "Roboto",
+
     alignSelf: "center"
   },
   buttonText: {
     fontSize: BUTTON_INPUT_FONT,
-    fontFamily: "Roboto",
+
     color: "white",
     alignSelf: "center"
   },
@@ -341,7 +338,7 @@ let styles = StyleSheet.create({
   searchInput: {
     flex: INPUT_FLEX,
     padding: 8,
-    fontFamily: "normal",
+
     fontSize: BUTTON_INPUT_FONT,
     backgroundColor: "white",
     borderRadius: 1,

@@ -47,19 +47,19 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 18,
     margin: 0,
-    fontFamily: "Roboto",
+
     fontWeight: "bold",
     color: "black"
   },
   area: {
     fontSize: 14,
-    fontFamily: "Roboto",
+
     color: "#656565",
     marginTop: 2
   },
   reviewCount: {
     fontSize: 13,
-    fontFamily: "Roboto",
+
     marginBottom: 4,
     color: "#656565",
     marginTop: 2
