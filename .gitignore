@@ -1,5 +1,11 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
-
+*.swp
 lib/config.js
+*.keystore
+*.p12
+*.cer
+keystoreInfo.md
+*.mobileprovision
+*.ipa
